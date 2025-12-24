@@ -1,0 +1,127 @@
+Here is a **clean, professional `README.md` content** you can directly paste into your repository.
+It explains the **application**, **architecture**, and **SOLID principle mapping** clearly, without code comments.
+
+---
+
+# 🚗 Vehicle Parking Management – SOLID Design (Java)
+
+This is a **console-based Java application** that simulates a **vehicle parking management flow** using **clean object-oriented design** and **SOLID principles**.
+
+The project demonstrates how to structure a small backend-style application with clear separation of concerns, extensibility, and maintainability.
+
+---
+
+## 📌 Application Overview
+
+The application performs the following steps:
+
+1. Accepts vehicle details (vehicle number, type)
+2. Records total parking hours
+3. Generates a unique parking ticket
+4. Calculates parking fee based on hours
+5. Processes payment using a selected payment method
+6. Displays all vehicle-related details
+
+This mirrors how a real backend service processes a request end-to-end.
+
+---
+
+## 🧩 Core Components
+
+### Vehicle
+
+Represents the vehicle entity and stores:
+
+* Vehicle number
+* Vehicle type
+* Total parking hours
+* Generated ticket ID
+* Amount paid
+
+### TicketGeneratingService
+
+Responsible for generating a unique ticket for a vehicle.
+
+### ParkingFeeCalculator
+
+Calculates parking fees based on total hours parked.
+
+### PaymentMethod (Interface)
+
+Defines a contract for payment processing.
+
+### UpiPayment / CreditCardPayment
+
+Concrete implementations of payment processing.
+
+### VehicleService
+
+Coordinates ticket generation and fee calculation for a vehicle.
+
+### Main
+
+Application entry point that wires everything together.
+
+---
+
+## ✅ SOLID Principles – How They Are Applied
+
+---
+
+### **S — Single Responsibility Principle (SRP)**
+
+Each class has **one clear responsibility**:
+
+* `Vehicle` → stores vehicle-related data only
+* `ParkingFeeCalculator` → calculates parking fees
+* `TicketGeneratingService` → generates ticket IDs
+* `UpiPayment` / `CreditCardPayment` → handles payment logic
+* `VehicleService` → orchestrates vehicle processing
+
+Each class changes for **one reason only**, making the system easier to maintain.
+
+---
+
+### **O — Open / Closed Principle (OCP)**
+
+The system is **open for extension but closed for modification**:
+
+* New payment methods (Cash, Wallet, NetBanking) can be added by implementing `PaymentMethod`
+* Existing code does not need to be changed
+
+This allows features to grow without breaking existing functionality.
+
+---
+
+### **L — Liskov Substitution Principle (LSP)**
+
+Any implementation of `PaymentMethod` can replace another without affecting correctness:
+
+* `UpiPayment` and `CreditCardPayment` are interchangeable
+* The main flow does not depend on concrete payment logic
+
+This ensures reliable polymorphism.
+
+---
+
+### **I — Interface Segregation Principle (ISP)**
+
+Interfaces are **small and focused**:
+
+* `PaymentMethod` exposes only one method: `pay`
+* No class is forced to implement unused methods
+
+This avoids unnecessary coupling.
+
+---
+
+### **D — Dependency Inversion Principle (DIP)**
+
+High-level logic depends on **abstractions, not concrete implementations**:
+
+* Payment processing depends on `PaymentMethod`, not a specific payment type
+* Services are composed rather than tightly coupled
+
+This design is easy to migrate to frameworks like Spring Boot using dependency injection.
+
+---
