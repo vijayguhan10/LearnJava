@@ -1,9 +1,6 @@
-Here is a **clean, professional `README.md` content** you can directly paste into your repository.
-It explains the **application**, **architecture**, and **SOLID principle mapping** clearly, without code comments.
 
----
 
-# 🚗 Vehicle Parking Management – SOLID Design (Java)
+# Vehicle Parking Management – SOLID Design (Java)
 
 This is a **console-based Java application** that simulates a **vehicle parking management flow** using **clean object-oriented design** and **SOLID principles**.
 
@@ -11,7 +8,7 @@ The project demonstrates how to structure a small backend-style application with
 
 ---
 
-## 📌 Application Overview
+## Application Overview
 
 The application performs the following steps:
 
@@ -26,7 +23,7 @@ This mirrors how a real backend service processes a request end-to-end.
 
 ---
 
-## 🧩 Core Components
+##  Core Components
 
 ### Vehicle
 
@@ -123,5 +120,3 @@ High-level logic depends on **abstractions, not concrete implementations**:
 * Services are composed rather than tightly coupled
 
 This design is easy to migrate to frameworks like Spring Boot using dependency injection.
-
----

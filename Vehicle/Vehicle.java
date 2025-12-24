@@ -1,4 +1,5 @@
-// Vehicle.java
+package Vehicle;
+
 class VehicleServe {
     private String vehicleNo;
     private String type;
