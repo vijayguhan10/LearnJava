@@ -3,21 +3,21 @@ package Rider;
 /* =======================
    DATA MODEL (SRP)
    ======================= */
-class Ride {
-    private final String rideId;
+class Rider {
+    private final String riderId;
     private final int distance;
     private final double time;
     private final boolean peak;
 
-    public Ride(String rideId, int distance, double time, boolean peak) {
-        this.rideId = rideId;
+    public Rider(String riderId, int distance, double time, boolean peak) {
+        this.riderId = riderId;
         this.distance = distance;
         this.time = time;
         this.peak = peak;
     }
 
-    public String getRideId() {
-        return rideId;
+    public String getRiderId() {
+        return riderId;
     }
 
     public int getDistance() {
@@ -34,100 +34,111 @@ class Ride {
 }
 
 /* =======================
-   ABSTRACTION (Template Method)
+   ABSTRACTION (OCP, DIP)
    ======================= */
-abstract class RideType {
-
-    protected abstract double baseFare();
-    protected abstract double perKmRate();
-    protected abstract double perMinRate();
-    protected abstract double minimumFare();
-    protected abstract String type();
-
-    public final double calculateFare(Ride ride) {
-        double fare = baseFare()
-                + (ride.getDistance() * perKmRate())
-                + (ride.getTime() * perMinRate());
-
-        if (fare < minimumFare()) {
-            fare = minimumFare();
-        }
-
-        if (ride.isPeak()) {
-            fare += fare * 0.25;
-        }
-
-        return fare;
-    }
-
-    public String getType() {
-        return type();
-    }
+interface RideType {
+    String getType();
+    double calculateFare(Rider rider);
 }
 
 /* =======================
    IMPLEMENTATIONS (LSP)
    ======================= */
-class MiniRide extends RideType {
+class MiniRide implements RideType {
 
-    protected double baseFare() { return 200; }
-    protected double perKmRate() { return 17; }
-    protected double perMinRate() { return 20; }
-    protected double minimumFare() { return 50; }
-    protected String type() { return "Mini"; }
+    private static final int BASE_FARE = 200;
+    private static final int PER_KM_RATE = 17;
+    private static final int PER_MIN_RATE = 20;
+
+    public String getType() {
+        return "Mini";
+    }
+
+    public double calculateFare(Rider rider) {
+        double fare = BASE_FARE +
+                (rider.getDistance() * PER_KM_RATE) +
+                (rider.getTime() * PER_MIN_RATE);
+
+        if (rider.isPeak()) {
+            fare += fare * 0.25;
+        }
+        return fare;
+    }
 }
 
-class SedanRide extends RideType {
+class SedanRide implements RideType {
 
-    protected double baseFare() { return 300; }
-    protected double perKmRate() { return 20; }
-    protected double perMinRate() { return 25; }
-    protected double minimumFare() { return 80; }
-    protected String type() { return "Sedan"; }
+    private static final int BASE_FARE = 300;
+    private static final int PER_KM_RATE = 20;
+    private static final int PER_MIN_RATE = 25;
+
+    public String getType() {
+        return "Sedan";
+    }
+
+    public double calculateFare(Rider rider) {
+        double fare = BASE_FARE +
+                (rider.getDistance() * PER_KM_RATE) +
+                (rider.getTime() * PER_MIN_RATE);
+
+        if (rider.isPeak()) {
+            fare += fare * 0.25;
+        }
+        return fare;
+    }
 }
 
-class SuvRide extends RideType {
+class SuvRide implements RideType {
 
-    protected double baseFare() { return 400; }
-    protected double perKmRate() { return 25; }
-    protected double perMinRate() { return 30; }
-    protected double minimumFare() { return 100; }
-    protected String type() { return "SUV"; }
+    private static final int BASE_FARE = 400;
+    private static final int PER_KM_RATE = 25;
+    private static final int PER_MIN_RATE = 30;
+
+    public String getType() {
+        return "SUV";
+    }
+
+    public double calculateFare(Rider rider) {
+        double fare = BASE_FARE +
+                (rider.getDistance() * PER_KM_RATE) +
+                (rider.getTime() * PER_MIN_RATE);
+
+        if (rider.isPeak()) {
+            fare += fare * 0.25;
+        }
+        return fare;
+    }
 }
 
 /* =======================
    INVOICE (IMMUTABLE)
    ======================= */
-final class Invoice {
-    private final String rideId;
+class Invoice {
+    private final String riderId;
     private final String rideType;
     private final double totalFare;
-
-    public Invoice(String rideId, String rideType, double totalFare) {
-        this.rideId = rideId;
+    public Invoice(String riderId, String rideType, double totalFare) {
+        this.riderId = riderId;
         this.rideType = rideType;
         this.totalFare = totalFare;
     }
 
     public void printInvoice() {
         System.out.println("----- Ride Invoice -----");
-        System.out.println("Ride ID   : " + rideId);
+        System.out.println("Ride ID   : " + riderId);
         System.out.println("Ride Type : " + rideType);
         System.out.println("Total Fare: ₹" + totalFare);
     }
 }
 
 /* =======================
-   SERVICE (VERY SIMPLE)
+   SERVICE (DIP)
    ======================= */
 class FareCalculator {
 
-    public Invoice generateInvoice(Ride ride, RideType rideType) {
-        return new Invoice(
-                ride.getRideId(),
-                rideType.getType(),
-                rideType.calculateFare(ride)
-        );
+    public Invoice generateInvoice(Rider rider, RideType rideType) {
+        double fare = rideType.calculateFare(rider);
+        return new Invoice(rider.getRiderId(), rideType.getType(), fare);
     }
 }
 
@@ -137,12 +148,12 @@ class FareCalculator {
 public class Main {
     public static void main(String[] args) {
 
-        Ride ride = new Ride("R101", 12, 20, true);
+        Rider rider = new Rider("R101", 12, 20, true);
 
-        RideType rideType = new SedanRide(); // MiniRide / SuvRide
+        RideType rideType = new SedanRide();   // MiniRide / SuvRide
         FareCalculator calculator = new FareCalculator();
 
-        Invoice invoice = calculator.generateInvoice(ride, rideType);
+        Invoice invoice = calculator.generateInvoice(rider, rideType);
         invoice.printInvoice();
     }
-}
+}    
