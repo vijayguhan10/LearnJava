@@ -1,7 +1,3 @@
-Here’s a clean, interview-ready **README.md** version of your problem statement, structured like a real project 👇
-(No fluff, no emojis, readable by interviewers and recruiters)
-
----
 
 # 🚕 Ride Fare Calculation System (OOP Design)
 
