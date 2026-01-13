@@ -1,7 +1,6 @@
 package Practice_OOPS;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 class MyTask extends Thread {
     @Override
     public void run() {
