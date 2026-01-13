@@ -22,7 +22,6 @@ public class Book {
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;
 
-    // getters & setters
     public Long getId() {
         return id;
     }
