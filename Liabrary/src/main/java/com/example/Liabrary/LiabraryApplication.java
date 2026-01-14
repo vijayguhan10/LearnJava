@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LiabraryApplication {
 
 	public static void main(String[] args) {
+		System.out.println("Liabrary Application Started");
 		SpringApplication.run(LiabraryApplication.class, args);
 	}
 
