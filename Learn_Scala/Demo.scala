@@ -6,7 +6,7 @@ object Demo {
     Numbers.foreach(a => println(a))
     Numbers.filter(p => p > 1).foreach(println);
     Numbers.map(_ * 2).foreach(println)
-
+    
     println("sum        = " + Numbers.sum) // sum        = 15
     println("product    = " + Numbers.product) // product    = 120
     println("min        = " + Numbers.min) // min        = 1
@@ -14,10 +14,9 @@ object Demo {
 
     println("size       = " + Numbers.size) // size       = 5
     println("count > 2  = " + Numbers.count(_ > 2)) // count > 2  = 3
-
+    
     println("exists > 3 = " + Numbers.exists(_ > 3)) // exists > 3 = true
     println("forall > 0 = " + Numbers.forall(_ > 0)) // forall > 0 = true
-
     println("find > 3   = " + Numbers.find(_ > 3)) // find > 3   = Some(4)
     println("head       = " + Numbers.head) // head       = 1
     println("last       = " + Numbers.last) // last       = 5

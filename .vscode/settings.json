@@ -1,8 +1,11 @@
 {
-    "chat.disableAIFeatures": true,
+    "chat.disableAIFeatures": false,
     "editor.formatOnSave": true,
 
     "[java]": {
         "editor.defaultFormatter": "redhat.java"
+    },
+    "files.watcherExclude": {
+        "**/target": true
     }
 }
