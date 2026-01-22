@@ -1,57 +1,38 @@
-// Interface (Trait) - Abstraction
-trait PaymentMethod {
-  def pay(amount: Double): Unit
-}
+// Simple Payment class
+class Payment(method: String) {
 
-// Abstract Class - Partial Implementation
-abstract class Payment(val methodName: String) extends PaymentMethod {
-
-  // Encapsulation (protected data)
-  protected var totalPaid: Double = 0
-
-  // Concrete method
-  def printReceipt(amount: Double): Unit = {
-    totalPaid += amount
-    println(s"$methodName payment of $$amount successful")
+  def pay(amount: Double): Unit = {
+    println(s"$method payment of $$amount successful")
   }
 }
 
-// Concrete Class - Inheritance + Override
-class UpiPayment extends Payment("UPI") {
-  override def pay(amount: Double): Unit = {
-    printReceipt(amount)
-  }
-}
-
-// Concrete Class - Inheritance + Override
-class CardPayment extends Payment("Card") {
-  override def pay(amount: Double): Unit = {
-    printReceipt(amount)
-  }
-}
-
-// Business Logic Class - Encapsulation
-class Order(private val orderId: Int, private val amount: Double) {
-
-  // Polymorphism: depends on interface
-  def processPayment(payment: PaymentMethod): Unit = {
+// Order class
+class Order(orderId: Int, amount: Double) {
+  def processPayment(payment: Payment): Unit = {
     println(s"Processing order $orderId")
     payment.pay(amount)
   }
 }
 
-// Singleton Object - Program Entry Point
+// Entry point
 object OnlineStoreApp {
-
   def main(args: Array[String]): Unit = {
-
     val order = new Order(101, 500.0)
 
-    val upi: PaymentMethod = new UpiPayment()
-    val card: PaymentMethod = new CardPayment()
+    val upiPayment = new Payment("UPI")
+    val cardPayment = new Payment("Card")
 
-    order.processPayment(upi)
-    order.processPayment(card)
+    order.processPayment(upiPayment)
+    order.processPayment(cardPayment)
   }
 }
 
+
+// tODAY Array Bs-on answers 
+// tmrw sql:stack
+// friday ooops : queue
+// saturday : LL /SCALA/HLD
+// SUNDAY : JAVA SPRING //DP
+// MOONDAY : NON-LINEAR//DP
+// TUESDAY : REVISION ON DSA 
+// WENESDAY REVISION ON OOPS SQL /
