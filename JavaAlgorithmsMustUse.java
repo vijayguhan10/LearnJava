@@ -1,5 +1,9 @@
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class JavaAlgorithmsMustUse {
 
@@ -19,7 +23,7 @@ public class JavaAlgorithmsMustUse {
 
         Arrays.fill(arr, 0);
         System.out.println(Arrays.toString(arr));  
-        // [0, 0, 0, 0, 0, 0]
+       
 
         int[] copiedArr = Arrays.copyOf(arr, 3);
         System.out.println(Arrays.toString(copiedArr));  
@@ -99,3 +103,5 @@ public class JavaAlgorithmsMustUse {
         // [6, 5, 4, 3, 2, 1]
     }
 }
+
+
