@@ -6,7 +6,7 @@ object Demo {
     Numbers.foreach(a => println(a))
     Numbers.filter(p => p > 1).foreach(println);
     Numbers.map(_ * 2).foreach(println)
-    
+                              
     println("sum        = " + Numbers.sum) // sum        = 15
     println("product    = " + Numbers.product) // product    = 120
     println("min        = " + Numbers.min) // min        = 1
