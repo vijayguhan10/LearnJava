@@ -41,13 +41,6 @@ object Demo {
 // Type: (Int, Int) => Int   === Function2[Int, Int, Int]
     val aa = (a: Int, b: Int) => a + b
 
-    println(aa(1, 1)) // 2
-
+    println(aa(1, 1)) 
   }
 }
-ld1
-normali,j-coll,-btree,shardings,sortings,os-ba
-l2
-dsa,sql,java-colls
-
-
