@@ -34,4 +34,10 @@ object Sample extends App {
     val result = for(n<-nums)yield n*2;
     println(s"Loop working with the Yield : $n");
   }
+  def maps():Unit={
+    nums=List(1,2,3)
+    val result=nums.flatMap(x=>List(x,x*2))
+    println(s"Nested Flatmaps : $result")
+  }
+  maps();
 }
