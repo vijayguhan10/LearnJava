@@ -23,10 +23,15 @@ object Sample extends App {
   }
   println(greet(u1))
   val nums = List(1, 2, 3)
-  for (it <- nums) {
-    println(it)
-  }
-  for(i<-1 to 10 if i%2==0 ){
-    print(i)
+  def forloops(): Unit = {
+    val nums = List(1, 2, 3, 4, 5)
+    for (n <- nums) {
+      println(s"Nubmers :$n")
+    }
+    for(n<-nums if n%2==0){
+        println(s"for loop with filters : $n");
+    }
+    val result = for(n<-nums)yield n*2;
+    println(s"Loop working with the Yield : $n");
   }
 }
