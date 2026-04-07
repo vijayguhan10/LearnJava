@@ -17,9 +17,16 @@ object Sample extends App {
 //       s"Hello $name, age $age"
 //   }
 // }
-  def greet(emp:User):String=emp match{
-    case User("Vijay",age)=>s"Vijay Is matched properly"
-    case User(name,age)=>s"$name is printing"
+  def greet(emp: User): String = emp match {
+    case User("Vijay", age) => s"Vijay Is matched properly"
+    case User(name, age)    => s"$name is printing"
   }
   println(greet(u1))
+  val nums = List(1, 2, 3)
+  for (it <- nums) {
+    println(it)
+  }
+  for(i<-1 to 10 if i%2==0 ){
+    print(i)
+  }
 }
