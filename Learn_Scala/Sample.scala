@@ -6,14 +6,14 @@ object Sample extends App {
   val u1 = User("vijay", 20)
   val u2 = u1.copy(age = 22)
 
-  println(u1)
-  println(u2)
+  // println(u1)
+  // println(u2)
 
   def greet(emp: User): String = emp match {
     case User("Vijay", age) => s"Vijay Is matched properly"
     case User(name, age)    => s"$name is printing"
   }
-  println(greet(u1))
+  // println(greet(u1))
 
   val nums = List(1, 2, 3)
 
@@ -37,7 +37,7 @@ object Sample extends App {
     val result = nums.flatMap(x => List(x, x * 2))
     println(s"Nested Flatmaps : $result")
   }
-  maps()
+  // maps()
 
   def for_comp(): Unit = {
     val customers = List(
@@ -62,6 +62,25 @@ object Sample extends App {
     println(result)
   }
 
-  forloops()
-  for_comp()
+def match_map_trans(): Option[String] = {
+
+  val emp: Option[User] = Some(User("Vijay", 20))
+
+  val result: Option[String] =
+    emp.map { user =>   
+
+      user match {    
+        case User(_, age) =>
+          if (age > 20) "User Found"
+          else "User too young"
+      }
+
+    }
+
+  println(result)
+}
+  match_map_trans()
+
+  // forloops()
+  // for_comp()
 }
