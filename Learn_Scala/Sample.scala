@@ -65,7 +65,7 @@ object Sample extends App {
 def match_map_trans(): Option[String] = {
 //   In map, even if the function returns None, it gets wrapped again, so it becomes Some(None) (nested).
 // But in flatMap, the result is returned directly without wrapping, so None stays None.
-// That’s why in map it becomes nested and confusing, while in flatMap it stays clean.
+// That’s why in map it becomes nested and confusing, while in flatMap it stays clean.//
 
   val emp: Option[User] = Some(User("Vijay", 20))
 
